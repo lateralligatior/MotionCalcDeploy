@@ -1,0 +1,17 @@
+
+{% extends 'basic.html' %}
+
+{% block content %}
+
+<h1>Grip force</h1>
+<form action="add" method="POST">
+    {% csrf_token %}
+    Part mass (kg): <input type="text" name="mass"><br><br>
+    Acceleration (m/s^2): <input type="text" name="acceleration"><br><br>
+    Gravity (m/s^2): <input type="text" value = "10" name="gravity"><br><br>
+    Coefficient friction: <input type="text" name="coeff"><br><br>
+    Safety: <input type="text" name="safety"><br><br>
+    <input type="submit">
+</form>
+<h1> Required grip force (N)= {{result}} </h1>
+{% endblock %}
