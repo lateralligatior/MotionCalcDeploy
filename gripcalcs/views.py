@@ -5,6 +5,9 @@ from django.http import HttpResponse
 def index(request):
     return render(request, "input.html")
 
+def torquetoforce(request):
+    return render(request, "torque.html")
+
 def is_number(s):
     try:
         float(s)

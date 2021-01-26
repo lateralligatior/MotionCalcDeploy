@@ -1,0 +1,31 @@
+
+{% extends 'basic.html' %}
+{% load static %}
+{% block content %}
+
+<h1>Moment load vertical </h1>
+<div class = "container-fluid"> 
+    <div class = "row">
+        <div class = "col-md-6">
+            <form action="verticalmoment_calc" method="POST">
+                {% csrf_token %}
+                Part mass (kg): <input type="text" name="partmass"><br><br>
+                Suppot mass (kg): <input type="text" name="supportmass"><br><br>
+                Acceleration (m/s^2): <input type="text" name="acceleration"><br><br>
+                Gravity (m/s^2): <input type="text" value = "10" name="gravity"><br><br>
+                Part COM L1 (mm): <input type="text" name="l1"><br><br>
+                Support COM L2 (mm): <input type="text" name="l2"><br><br>
+                Part COM H1 (mm): <input type="text" name="h1"><br><br>
+                Support COM H2(mm): <input type="text" name="h2"><br><br>
+                Safety: <input type="text" name="safety"><br><br>
+                <input type="submit">
+            </form>
+        </div>
+        <div class = "col-md-6">
+            <img src="{% static 'verticalmomentload.png' %}" class="img-fluid" alt="Responsive image">
+        </div>
+    </div>
+</div>
+<h1> Pitch moment (My): {{mymoment}} </h1>
+<h1> Pitch moment (Mz): {{mzmoment}} </h1>
+{% endblock %}
