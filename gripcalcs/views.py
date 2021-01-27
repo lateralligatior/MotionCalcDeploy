@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+import math
 
 # Create your views here.
 def index(request):
@@ -7,6 +8,23 @@ def index(request):
 
 def torquetoforce(request):
     return render(request, "torque.html")
+
+def torquetoforce_calc(request):
+    forceStr = request.POST.get("force")
+    leadStr = request.POST.get("lead")
+    efficiencyStr = request.POST.get("efficiency")
+    print(forceStr, leadStr, efficiencyStr )
+    if is_number(forceStr) and is_number(leadStr) and is_number(efficiencyStr):
+
+        force = float(forceStr)
+        lead = float(leadStr)
+        efficiency = float(efficiencyStr)
+        torque = force * lead / (2000 * math.pi * efficiency )
+
+        return render(request, "torque.html", {"torque" : torque})
+    else:
+        torque = "Only digits are allowed"
+        return render(request, "torque.html", {"torque": torque})
 
 def is_number(s):
     try:
